@@ -99,9 +99,11 @@
         </div>
     </div>
     <div class="form-actions">
+        {% if purchase.acceptance == None  or purchase.acceptance == ''%}
         <button type="submit" class="btn btn-info pull-right" id="add_product">
             Добавить товар
         </button>
+        {% endif %}
         <div class="clearfix">
         </div>
     </div>
@@ -161,6 +163,7 @@
             <td class="hidden-phone">{{ product.0.purchase_price }}</td>
             <td class="hidden-phone">{{ product.1 }}</td>
             <td>
+                {% if purchase.acceptance == None  or purchase.acceptance == ''%}
                 <div class="tools">
                     <div class="btn-group">
                         <a class="btn btn-small" data-original-title="" href="/purchase/{{ id_purchase }}/product/{{ product.0.pk }}/">
@@ -173,6 +176,7 @@
                         </a>
                     </div>
                 </div>
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
@@ -198,13 +202,17 @@
     </table>
     <div class="form-actions no-margin">
         {% if id_purchase != 0 %}
-        <a class="button btn btn-info pull-left" href="/purchase/{{ id_purchase }}/delete/" id="delete_purchase">
-            Удалить закуп
-        </a>
+            {% if purchase.acceptance == None or purchase.acceptance == '' %}
+            <a class="button btn btn-info pull-left" href="/purchase/{{ id_purchase }}/delete/" id="delete_purchase">
+                Удалить закуп
+            </a>
+            {% endif %}
         {% endif %}
-        <button type="button" class="btn btn-info pull-right" id="create">
-            Сохранить
-        </button>
+        {% if purchase.acceptance == None  or purchase.acceptance == '' %}
+            <button type="button" class="btn btn-info pull-right" id="create">
+                Сохранить
+            </button>
+        {% endif %}
         <div class="clearfix">
         </div>
     </div>

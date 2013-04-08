@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from warehouse.ajax import purchase_save, get_product_price
-from warehouse.views import purchases, purchase, purchase_product_delete, purchase_product, purchase_delete, acceptance, acceptances, return_view
+from warehouse.views import purchases, purchase, purchase_product_delete, purchase_product, purchase_delete, acceptance, acceptances, return_view, returns
 
 admin.autodiscover()
 
@@ -26,4 +26,5 @@ urlpatterns = patterns('',
     (r'^acceptances/page/(?P<page_pk>\d+)/$', acceptances),
 
     (r'^acceptance/(?P<id_acceptance>\d+)/return/$', return_view),
+    (r'^returns/page/(?P<page_pk>\d+)/$', returns),
 )

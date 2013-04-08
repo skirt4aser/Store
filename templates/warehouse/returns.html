@@ -1,5 +1,5 @@
 {% extends 'root.html' %}
-{% block title %}Приемки{% endblock %}
+{% block title %}Возвраты{% endblock %}
 {% block content %}
     <div class="row-fluid">
         <div class="span12">
@@ -31,7 +31,7 @@
                                 <button class="btn btn-info" type="submit">
                                     Фильтровать
                                 </button>
-                                <a class="btn btn-info" href="/acceptances/page/1/">
+                                <a class="btn btn-info" href="/returns/page/1/">
                                     Сбросить фильтр
                                 </a>
                             </div>
@@ -53,14 +53,8 @@
                             <th style="width:15%" class="hidden-phone">
                                 Склад
                             </th>
-                            <th style="width:15%" class="hidden-phone">
+                            <th style="width:10%" class="hidden-phone">
                                 Сумма
-                            </th>
-                            <th style="width:10%" class="hidden-phone">
-                                Долг
-                            </th>
-                            <th style="width:10%" class="hidden-phone">
-                                Закупщик
                             </th>
                             <th style="width:25%" class="hidden-phone">
                                 Комментарий
@@ -71,25 +65,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for acceptance in acceptances %}
+                        {% for return in returns %}
                             <tr>
-                                <td>{{ acceptance.pk }}</td>
-                                <td class="hidden-phone">{{ acceptance.date|date:'Y-m-d' }}</td>
-                                <td><span class="name">{{ acceptance.purchase.supplier }}</span></td>
-                                <td><span class="name">{{ acceptance.purchase.warehouse }}</span></td>
-                                <td class="hidden-phone">{{ acceptance.sum }}</td>
-                                <td class="hidden-phone">{{ acceptance.debt }}</td>
-                                <td><span class="name">{{ acceptance.purchase.purchaser }}</span></td>
-                                <td><span class="name">{{ acceptance.comment }}</span></td>
+                                <td>{{ return.pk }}</td>
+                                <td class="hidden-phone">{{ return.date|date:'Y-m-d' }}</td>
+                                <td><span class="name">{{ return.acceptance.purchase.supplier }}</span></td>
+                                <td><span class="name">{{ return.acceptance.purchase.warehouse }}</span></td>
+                                <td class="hidden-phone">{{ return.sum }}</td>
+                                <td><span class="name">{{ return.comment }}</span></td>
                                 <td>
                                     <div class="tools">
                                         <div class="btn-group">
-                                            <a class="btn btn-small" data-original-title="" href="/purchase/{{ acceptance.purchase_id }}/acceptance">
+                                            <a class="btn btn-small" data-original-title="" href="/acceptance/{{ return.pk }}/return">
                                                 <i class="icon-edit" data-original-title="Редактировать"></i>
-                                            </a>
-
-                                            <a class="btn btn-small" data-original-title="" href="/acceptance/{{ acceptance.pk }}/return/">
-                                                <i class="icon-share-alt" data-original-title="Возврат"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -100,15 +88,15 @@
                         </tbody>
                     </table>
                     <div class="pagination">
-                    {% if acceptances|length != 0 %}
-                        <ul>
-                            <li class="{% if current == 1 %}disabled{% endif %}"><a href="/acceptances/page/{{ prev }}">«</a></li>
-                            {% for page in pages %}
-                                <li class="{% if page == current %}active{% endif %}"><a href="/acceptances/page/{{ page }}">{{ page }}</a></li>
-                            {% endfor %}
-                            <li class="{% if current == pages|length %}disabled{% endif %}"><a href="/acceptances/page/{{ next }}">»</a></li>
-                        </ul>
-                    {% endif %}
+                        {% if returns|length != 0 %}
+                            <ul>
+                                <li class="{% if current == 1 %}disabled{% endif %}"><a href="/returns/page/{{ prev }}">«</a></li>
+                                {% for page in pages %}
+                                    <li class="{% if page == current %}active{% endif %}"><a href="/returns/page/{{ page }}">{{ page }}</a></li>
+                                {% endfor %}
+                                <li class="{% if current == pages|length %}disabled{% endif %}"><a href="/returns/page/{{ next }}">»</a></li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -147,7 +135,7 @@
                             days: -29
                         }),
                         endDate: Date.today(),
-                        minDate: '01/01/2012',
+                        minDate: '01/01/2013',
                         locale: {
                             applyLabel: 'Фильтровать',
                             fromLabel: 'C',

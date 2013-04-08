@@ -35,8 +35,16 @@
                         info = true;
                     }
                 });
+                var error = '';
+                for (var i=0;i<len;i++){
+                    if (parseInt($('#acceptance_amount_'+i).text()) < $('#id_productofpurchase_set-'+i+'-return_amount').val()){
+                        error = 'Возврат(количество) не может быть больше приемки(количество)';
+                    }
+                }
                 if (info==true){
                     alert('Заполните все поля в таблице');
+                }else if(error!=''){
+                    alert(error);
                 }else{
                     $('#create_submit').click();
                 }

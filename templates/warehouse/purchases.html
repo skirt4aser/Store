@@ -1,5 +1,5 @@
 {% extends 'root.html' %}
-{% block title %}Закуп{% endblock %}
+{% block title %}Закупы{% endblock %}
 {% block content %}
     <div class="row-fluid">
     <div class="span12">
@@ -95,9 +95,11 @@
                         <a class="btn btn-small" data-original-title="" href="/purchase/{{ purchase.0.pk }}">
                             <i class="icon-edit" data-original-title="Редактировать"></i>
                         </a>
+                        {% if purchase.0.acceptance == None or purchase.0.acceptance == '' %}
                         <a class="btn btn-small" data-original-title="" href="/purchase/{{ purchase.0.pk }}/delete/" onclick="return confirm('Вы точно хотите удалить данный закуп?');">
                             <i class="icon-trash" data-original-title="Удалить"></i>
                         </a>
+                        {% endif %}
                         <a class="btn btn-small" data-original-title="" href="/purchase/{{ purchase.0.pk }}/acceptance/">
                             <i class="icon-share-alt" data-original-title="Приемка"></i>
                         </a>
@@ -164,8 +166,7 @@
                             days: -29
                         }),
                         endDate: Date.today(),
-                        minDate: '01/01/2012',
-                        maxDate: '12/31/2013',
+                        minDate: '01/01/2013',
                         locale: {
                             applyLabel: 'Фильтровать',
                             fromLabel: 'C',

@@ -141,7 +141,7 @@
                                 <td class="hidden-phone" rowspan="2">{{ product.0.product }}</td>
                                 <td rowspan="2"><span class="name">{{ product.0.product.measure_unit }}</span></td>
                                 <td class="hidden-phone">Заказано</td>
-                                <td class="hidden-phone">{{ product.0.purchase_amount }}</td>
+                                <td class="hidden-phone" id="purchase_amount_{{ forloop.counter0 }}">{{ product.0.purchase_amount }}</td>
                                 <td class="hidden-phone">{{ product.0.purchase_price }}</td>
                                 <td class="hidden-phone" id="purchase_sum_{{ forloop.counter0 }}">{{ product.2 }}</td>
                             </tr>
@@ -204,9 +204,11 @@
                         <button type="submit" class="btn btn-info pull-right hide" id="create_submit">
                             Сохранить
                         </button>
+                        {% if purchase.acceptance.returnmodel == None or purchase.acceptance.returnmodel == '' %}
                         <button type="button" class="btn btn-info pull-right" id="create">
                             Сохранить
                         </button>
+                        {% endif %}
                         <div class="clearfix">
                         </div>
                     </div>

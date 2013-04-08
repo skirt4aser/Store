@@ -254,10 +254,17 @@ class ReturnModel(models.Model):
     acceptance = models.OneToOneField(Acceptance, verbose_name='Приемка')
     date = models.DateField(verbose_name='Дата возврата', blank=True, null=True)
     comment = models.TextField(verbose_name='Комментарий', blank=True)
-    created = models.DateTimeField(verbose_name='Время создания')
+    created = models.DateField(verbose_name='Время создания')
     author = models.ForeignKey(User, verbose_name='Автор', related_name='return_author')
     modified_date = models.DateField(verbose_name='Дата изменения')
     modified_author = models.ForeignKey(User, verbose_name='Автор изменения', related_name='return_modified_author')
+
+    def sum(self):
+        products = ProductOfPurchase.objects.filter(purchase=self.acceptance.purchase)
+        sum = 0
+        for product in products:
+            sum += (product.acceptance_price * product.return_amount)
+        return sum
 
     def __unicode__(self):
         return str(self.pk)

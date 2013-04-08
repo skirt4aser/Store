@@ -153,7 +153,7 @@
                                 <td class="hidden-phone" rowspan="2">{{ product.0.product }}</td>
                                 <td rowspan="2"><span class="name">{{ product.0.product.measure_unit }}</span></td>
                                 <td class="hidden-phone">Приемка</td>
-                                <td class="hidden-phone">{{ product.0.purchase_amount }}</td>
+                                <td class="hidden-phone" id="acceptance_amount_{{ forloop.counter0 }}">{{ product.0.purchase_amount }}</td>
                                 <td class="hidden-phone">{{ product.0.purchase_price }}</td>
                                 <td class="hidden-phone" id="purchase_sum_{{ forloop.counter0 }}">{{ product.2 }}</td>
                             </tr>

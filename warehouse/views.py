@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
-from database.models import Purchase, ProductOfPurchase, Acceptance, ProductAtWarehouse
+from database.models import Purchase, ProductOfPurchase, Acceptance, ProductAtWarehouse, ReturnModel
 from warehouse.forms import PurchaseForm, ProductOfPurchaseForm, AcceptanceForm, ReturnForm
 
 __author__ = 'Ars'
@@ -57,6 +57,7 @@ def purchases(request, page_pk):
 def purchase(request, id_purchase):
     product_list = []
     total = 0
+    purchase = ''
     if not id_purchase:
         form_purchase = PurchaseForm(request.POST or None)
         form_product = ProductOfPurchaseForm(request.POST or None)
@@ -94,7 +95,8 @@ def purchase(request, id_purchase):
                                                          'form_product'     :   form_product,
                                                          'products'         :   product_list,
                                                          'total'            :   total,
-                                                         'id_purchase'      :   id_purchase
+                                                         'id_purchase'      :   id_purchase,
+                                                         'purchase'         :   purchase
     }, RequestContext(request))
 
 @login_required()
@@ -326,10 +328,47 @@ def return_view(request, id_acceptance):
                     prod_war.delete()
             except ProductAtWarehouse.DoesNotExist:
                 print 'DoesNotExist'
-        return HttpResponseRedirect('/acceptances/page/1')
+        return HttpResponseRedirect('/returns/page/1')
     return render_to_response('warehouse/return.html',{'form_return'        :   form_return,
                                                        'acceptance'         :   acceptance,
                                                        'products'           :   product_list,
                                                        'form_products'      :   form_products,
                                                        'failure'            :   failure
     },RequestContext(request))
+
+@login_required()
+def returns(request, page_pk):
+    page_pk = int(page_pk)
+    per_page = 10
+    returns = ReturnModel.objects.all().order_by('date','pk')
+    all = returns.count()
+    pages = int(ceil(all/float(per_page)))
+    if page_pk>pages and page_pk!=1:
+        raise  Http404()
+    page_list = []
+    for i in range(pages):
+        page_list.append(i+1)
+    prev = 1
+    if page_pk!=1:
+        prev = page_pk -1
+    if page_pk==pages:
+        next = page_pk
+    else:
+        next = page_pk + 1
+    range_date = request.POST.get('report_range', '')
+    if range_date!='':
+        start = range_date[:10]
+        end = range_date[14:]
+        try:
+            returns = returns.filter(date__gte=start, date__lte=end)
+        except :
+            print 'bad date request'
+    returns = returns[per_page*page_pk-per_page:per_page*page_pk]
+    return render_to_response('warehouse/returns.html',{'returns'     :   returns,
+                                                            'range'       :   range_date,
+                                                            'pages'       :   page_list,
+                                                            'current'     :   page_pk,
+                                                            'prev'        :   prev,
+                                                            'next'        :   next
+    }, RequestContext(request))
+
