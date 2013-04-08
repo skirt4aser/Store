@@ -1,0 +1,171 @@
+{% extends 'root.html' %}
+{% block title %}Приемки{% endblock %}
+{% block content %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="title">
+                        Закупы
+                    </div>
+                    <span class="tools">
+                      <a class="fs1" aria-hidden="true" data-icon="&#xe090;"></a>
+                    </span>
+                </div>
+                <div class="widget-body">
+                    <form class="form-horizontal" method="POST">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <label class="control-label" for="report_range1">
+                                Период
+                            </label>
+                            <div class="controls">
+
+                                <div class="input-append">
+                                    <input type="text" name="report_range" id="report_range1" class="report_range" value="{{ range }}">
+                            <span class="add-on btn">
+                              <i class="icon-calendar">
+                              </i>
+                            </span>
+                                </div>
+                                <button class="btn btn-info" type="submit">
+                                    Фильтровать
+                                </button>
+                                <a class="btn btn-info" href="/acceptances/page/1/">
+                                    Сбросить фильтр
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </form>
+                    <table class="table table-condensed table-striped table-bordered table-hover no-margin">
+                        <thead>
+                        <tr>
+                            <th style="width:5%">
+                            </th>
+                            <th style="width:15%">
+                                Дата
+                            </th>
+                            <th style="width:15%" class="hidden-phone">
+                                Контрагент
+                            </th>
+                            <th style="width:15%" class="hidden-phone">
+                                Склад
+                            </th>
+                            <th style="width:15%" class="hidden-phone">
+                                Сумма
+                            </th>
+                            <th style="width:10%" class="hidden-phone">
+                                Долг
+                            </th>
+                            <th style="width:10%" class="hidden-phone">
+                                Закупщик
+                            </th>
+                            <th style="width:25%" class="hidden-phone">
+                                Комментарий
+                            </th>
+                            <th style="width:10%" class="hidden-phone">
+                                Действия
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for acceptance in acceptances %}
+                            <tr>
+                                <td>{{ acceptance.pk }}</td>
+                                <td class="hidden-phone">{{ acceptance.date|date:'Y-m-d' }}</td>
+                                <td><span class="name">{{ acceptance.purchase.supplier }}</span></td>
+                                <td><span class="name">{{ acceptance.purchase.warehouse }}</span></td>
+                                <td class="hidden-phone">{{ acceptance.sum }}</td>
+                                <td class="hidden-phone">{{ acceptance.debt }}</td>
+                                <td><span class="name">{{ acceptance.purchase.purchaser }}</span></td>
+                                <td><span class="name">{{ acceptance.comment }}</span></td>
+                                <td>
+                                    <div class="tools">
+                                        <div class="btn-group">
+                                            <a class="btn btn-small" data-original-title="" href="/purchase/{{ acceptance.purchase_id }}/acceptance">
+                                                <i class="icon-edit" data-original-title="Редактировать"></i>
+                                            </a>
+
+{#                                            <a class="btn btn-small" data-original-title="" href="/purchase/{{ purchase.0.pk }}/acceptance/">#}
+{#                                                <i class="icon-share-alt" data-original-title="Приемка"></i>#}
+{#                                            </a>#}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                    {% if acceptances|length != 0 %}
+                        <ul>
+                            <li class="{% if current == 1 %}disabled{% endif %}"><a href="/acceptances/page/{{ prev }}">«</a></li>
+                            {% for page in pages %}
+                                <li class="{% if page == current %}active{% endif %}"><a href="/acceptances/page/{{ page }}">{{ page }}</a></li>
+                            {% endfor %}
+                            <li class="{% if current == pages|length %}disabled{% endif %}"><a href="/acceptances/page/{{ next }}">»</a></li>
+                        </ul>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/media/theme/js/daterangepicker.js"></script>
+    <script type="text/javascript" src="/media/theme/js/date.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('a').tooltip('hide');
+            $('i').tooltip('hide');
+            $('.report_range').daterangepicker({
+                        ranges: {
+                            'Сегодня': ['today', 'today'],
+                            'Вчера': ['yesterday', 'yesterday'],
+                            'Последние 7 дней': [Date.today().add({
+                                days: -6
+                            }), 'today'],
+                            'Последние 3 дня': [Date.today().add({
+                                days: -29
+                            }), 'today'],
+                            'Этот месяц': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+                            'Последний месяц': [Date.today().moveToFirstDayOfMonth().add({
+                                months: -1
+                            }), Date.today().moveToFirstDayOfMonth().add({
+                                days: -1
+                            })]
+                        },
+                        opens: 'right',
+                        format: 'yyyy-MM-dd',
+                        separator: ' до ',
+                        startDate: Date.today().add({
+                            days: -29
+                        }),
+                        endDate: Date.today(),
+                        minDate: '01/01/2012',
+                        maxDate: '12/31/2013',
+                        locale: {
+                            applyLabel: 'Фильтровать',
+                            fromLabel: 'C',
+                            toLabel: 'По',
+                            customRangeLabel: 'Выбрать самому',
+                            daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                                'Октябрь', 'Ноябрь', 'Декабрь'],
+                            firstDay: 1
+                        },
+                        showWeekNumbers: true,
+                        buttonClasses: ['btn-danger']
+                    },
+
+                    function (start, end) {
+                        $('.report_range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+                    });
+        });
+    </script>
+{% endblock %}
