@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 from database.models import Purchase, ProductOfPurchase, Acceptance, ProductAtWarehouse, ReturnModel
-from warehouse.forms import PurchaseForm, ProductOfPurchaseForm, AcceptanceForm, ReturnForm
+from warehouse.forms import PurchaseForm, ProductOfPurchaseForm, AcceptanceForm, ReturnForm, WriteOffForm, ProductAtWarehouseForm, DishOfWarehouseForm
 
 __author__ = 'Ars'
 
@@ -372,3 +372,56 @@ def returns(request, page_pk):
                                                             'next'        :   next
     }, RequestContext(request))
 
+
+@login_required()
+def writeoff(request, id_writeoff):
+    if not id_writeoff:
+        form_writeoff = WriteOffForm(request.POST or None)
+        form_product = ProductAtWarehouseForm(request.POST or None)
+        form_dish = DishOfWarehouseForm(request.POST or None)
+    else:
+        pass
+#    product_list = []
+#    total = 0
+#    purchase = ''
+#    if not id_purchase:
+#        form_purchase = PurchaseForm(request.POST or None)
+#        form_product = ProductOfPurchaseForm(request.POST or None)
+#        if request.method == 'POST' and form_purchase.is_valid() and form_product.is_valid():
+#            purchase = form_purchase.save(commit=False)
+#            purchase.created = datetime.date.today()
+#            purchase.author = request.user
+#            purchase.modified_date = datetime.date.today()
+#            purchase.modified_author = request.user
+#            purchase.save()
+#            product = form_product.save(commit=False)
+#            product.purchase = purchase
+#            product.save()
+#            return HttpResponseRedirect('/purchase/'+str(purchase.pk))
+#    else:
+#        purchase = get_object_or_404(Purchase, pk=id_purchase)
+#        issued = purchase.issued
+#        products = purchase.productofpurchase_set.all().order_by('pk')
+#        for product in products:
+#            total += product.purchase_amount * product.purchase_price
+#            product_list.append([product, product.purchase_amount * product.purchase_price])
+#        form_purchase = PurchaseForm(request.POST or None, instance=purchase)
+#        form_product = ProductOfPurchaseForm(request.POST or None)
+#        if request.method == 'POST' and form_purchase.is_valid() and form_product.is_valid():
+#            purchase = form_purchase.save(commit=False)
+#            purchase.modified_date = datetime.date.today()
+#            purchase.modified_author = request.user
+#            purchase.issued = issued
+#            purchase.save()
+#            product = form_product.save(commit=False)
+#            product.purchase = purchase
+#            product.save()
+#            return HttpResponseRedirect('/purchase/'+str(purchase.pk))
+    return render_to_response('warehouse/writeoff.html',{'form_writeoff'    :   form_writeoff,
+                                                         'form_product'     :   form_product,
+                                                         'form_dish'        :   form_dish,
+#                                                         'products'         :   product_list,
+#                                                         'total'            :   total,
+#                                                         'id_purchase'      :   id_purchase,
+#                                                         'purchase'         :   purchase
+    }, RequestContext(request))

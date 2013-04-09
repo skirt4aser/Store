@@ -1,0 +1,267 @@
+{% extends 'root.html' %}
+{% block title %}Списание{% endblock %}
+{% block content %}
+    <div class="row-fluid">
+        <form class=" no-margin" method="POST">
+            <div class="span4">
+                <div class="widget">
+                    <div class="widget-header">
+                        <div class="title">
+                            Списание
+                        </div>
+                    <span class="tools">
+                      <a class="fs1" aria-hidden="true" data-icon="&#xe090;"></a>
+                    </span>
+                    </div>
+                    <div class="widget-body">
+                        {% csrf_token %}
+                        {{ form_writeoff.errors }}
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Склад
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_writeoff.warehouse }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Причина
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_writeoff.reason }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Дата
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_writeoff.date }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Комментарий
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_writeoff.comment }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="widget">
+                    <div class="widget-header">
+                        <div class="title">
+                            Выбор блюда
+                        </div>
+                    <span class="tools">
+                      <a class="fs1" aria-hidden="true" data-icon="&#xe090;"></a>
+                    </span>
+                    </div>
+                    <div class="widget-body">
+                        {{ form_dish.errors }}
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Блюдо
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_dish.dish }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Количество
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_dish.amount }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Цена
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_dish.price }}
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                                <button type="submit" class="btn btn-info pull-right" id="add_product">
+                                    Добавить блюдо
+                                </button>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="widget">
+                    <div class="widget-header">
+                        <div class="title">
+                            Выбор товара
+                        </div>
+                    <span class="tools">
+                      <a class="fs1" aria-hidden="true" data-icon="&#xe090;"></a>
+                    </span>
+                    </div>
+                    <div class="widget-body">
+                        {{ form_product.errors }}
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Товар
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_product.product }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Количество
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_product.amount }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">
+                                Цена
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form_product.price }}
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                                <button type="submit" class="btn btn-info pull-right" id="add_product">
+                                    Добавить товар
+                                </button>
+                            <div class="clearfix">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="title">
+                        Товары
+                    </div>
+                    <span class="tools">
+                      <a class="fs1" aria-hidden="true" data-icon="&#xe090;"></a>
+                    </span>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-condensed table-striped table-bordered table-hover no-margin">
+                        <thead>
+                        <tr>
+                            <th style="width:5%">
+                            </th>
+                            <th style="width:15%">
+                                Товар/Блюдо
+                            </th>
+                            <th style="width:15%" class="hidden-phone">
+                                Количество
+                            </th>
+                            <th style="width:15%" class="hidden-phone">
+                                Остаток
+                            </th>
+                            <th style="width:10%" class="hidden-phone">
+                                Цена
+                            </th>
+                            <th style="width:25%" class="hidden-phone">
+                                Сумма
+                            </th>
+                            <th style="width:10%" class="hidden-phone">
+                                Действия
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td class="hidden-phone">{{ product.0.product }}</td>
+                                <td><span class="name">{{ product.0.purchase_amount }}</span></td>
+                                <td><span class="name">{{ product.0.product.measure_unit }}</span></td>
+                                <td class="hidden-phone">{{ product.0.purchase_price }}</td>
+                                <td class="hidden-phone">{{ product.1 }}</td>
+                                <td>
+                                    {% if purchase.acceptance == None  or purchase.acceptance == ''%}
+                                        <div class="tools">
+                                            <div class="btn-group">
+                                                <a class="btn btn-small" data-original-title="" href="/purchase/{{ id_purchase }}/product/{{ product.0.pk }}/">
+                                                    <i class="icon-edit" data-original-title="Редактировать">
+                                                    </i>
+                                                </a>
+                                                <a class="btn btn-small delete" data-original-title="" href="/purchase/product/{{ product.0.pk }}/delete/">
+                                                    <i class="icon-trash" data-original-title="Удалить">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Итого</strong></td>
+                            <td><strong>{{ total }}</strong></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-actions no-margin">
+                        {% if id_purchase != 0 %}
+                            {% if purchase.acceptance == None or purchase.acceptance == '' %}
+                                <a class="button btn btn-info pull-left" href="/purchase/{{ id_purchase }}/delete/" id="delete_purchase">
+                                    Удалить закуп
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                        {% if purchase.acceptance == None  or purchase.acceptance == '' %}
+                            <button type="button" class="btn btn-info pull-right" id="create">
+                                Сохранить
+                            </button>
+                        {% endif %}
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/media/theme/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/media/store/js/purchase.js"></script>
+    <script type="text/javascript" src="/media/theme/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#id_date').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+            $('#id_product').select2();
+            $('#id_dish').select2();
+            $.fn.purchase();
+            $('a').tooltip('hide');
+            $('i').tooltip('hide');
+        });
+    </script>
+{% endblock %}
+{% block css %}
+    <link href="/media/theme/css/datepicker.css" rel="stylesheet">
+    <link href="/media/theme/css/select2.css" rel="stylesheet">
+{% endblock %}

@@ -90,6 +90,7 @@ class Dish(models.Model):
     modified_date = models.DateField(verbose_name='Дата изменения')
     modified_author = models.ForeignKey(User, verbose_name='Последний сотрудник внесший изменения ', related_name='dish_modified_author')
     comment = models.TextField(verbose_name='Комментарий', blank=True)
+    master = models.BooleanField(verbose_name='выдан мастером или нет')
 
     def __unicode__(self):
         return self.name
@@ -279,13 +280,14 @@ class WriteOff(models.Model):
     warehouse = models.ForeignKey(Warehouse, verbose_name='Склад')
     date = models.DateField(verbose_name='Дата')
     comment = models.TextField(verbose_name='Комментарий', blank=True)
-    created = models.DateTimeField(verbose_name='Время создания')
+    reason = models.CharField(max_length=100, verbose_name='Причина', choices=((u'Обеды сотрудников',u'Обеды сотрудников'),(u'Порча',u'Порча'),(u'Прочее',u'Прочее')))
+    created = models.DateField(verbose_name='Время создания')
     author = models.ForeignKey(User, verbose_name='Автор', related_name='writeoff_author')
     modified_date = models.DateField(verbose_name='Дата изменения')
     modified_author = models.ForeignKey(User, verbose_name='Автор изменения', related_name='writeoff_modified_author')
 
     def __unicode__(self):
-        return self.pk
+        return str(self.pk)
 
     class Meta:
         db_table = 'wr_writeoffs'
@@ -423,7 +425,7 @@ class DishOfWarehouse(models.Model):
         return self.dish
 
     class Meta:
-        db_table = 'wr_warehouse_dishes'
+        db_table = 'store_warehouse_dishes'
         ordering = ['dish']
         verbose_name_plural = u'Блюда на складе'
         verbose_name = u'Блюдо на складе'

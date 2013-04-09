@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f069c924-c5a6-46b2-addb-0563b1a30827" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Store/urls.py" afterPath="$PROJECT_DIR$/Store/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/models.py" afterPath="$PROJECT_DIR$/database/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/warehouse/forms.py" afterPath="$PROJECT_DIR$/warehouse/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/warehouse/views.py" afterPath="$PROJECT_DIR$/warehouse/views.py" />
     </list>
     <ignored path="Store.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,19 +28,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warehouse/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="299" column="28" selection-start="15201" selection-end="15201" vertical-scroll-proportion="0.097345136">
+            <state line="28" column="22" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="acceptances.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/warehouse/acceptances.html">
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/warehouse/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="26" selection-start="5108" selection-end="5814" vertical-scroll-proportion="-8.384615">
+            <state line="48" column="19" selection-start="1512" selection-end="1512" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -45,25 +49,25 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="276" column="0" selection-start="11251" selection-end="11251" vertical-scroll-proportion="0.0">
+            <state line="81" column="25" selection-start="2937" selection-end="2938" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="return.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/warehouse/return.html">
+      <file leaf-file-name="writeoff.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/warehouse/writeoff.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="79" selection-start="6549" selection-end="6567" vertical-scroll-proportion="-0.65384614">
+            <state line="113" column="68" selection-start="5034" selection-end="5034" vertical-scroll-proportion="0.38345864">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="acceptance.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/warehouse/acceptance.html">
+      <file leaf-file-name="purchase.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/warehouse/purchase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="11" selection-start="9876" selection-end="9876" vertical-scroll-proportion="-17.73077">
+            <state line="207" column="16" selection-start="6362" selection-end="6362" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -72,18 +76,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Store/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="returns.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/warehouse/returns.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="42" selection-start="4111" selection-end="4111" vertical-scroll-proportion="-16.346153">
+            <state line="30" column="44" selection-start="1446" selection-end="1446" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -99,13 +92,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitLogSettings">
+    <option name="myStructureFilterPaths" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Store/settings.py" />
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py" />
         <option value="$PROJECT_DIR$/media/store/js/purchase.js" />
-        <option value="$PROJECT_DIR$/warehouse/forms.py" />
         <option value="$PROJECT_DIR$/media/theme/js/daterangepicker.js" />
         <option value="$PROJECT_DIR$/templates/warehouse/purchase.html" />
         <option value="$PROJECT_DIR$/media/store/js/acceptance.js" />
@@ -113,11 +107,13 @@
         <option value="$PROJECT_DIR$/templates/warehouse/return.html" />
         <option value="$PROJECT_DIR$/media/store/js/return.js" />
         <option value="$PROJECT_DIR$/templates/warehouse/purchases.html" />
-        <option value="$PROJECT_DIR$/Store/urls.py" />
         <option value="$PROJECT_DIR$/templates/warehouse/acceptance.html" />
-        <option value="$PROJECT_DIR$/database/models.py" />
         <option value="$PROJECT_DIR$/templates/warehouse/returns.html" />
+        <option value="$PROJECT_DIR$/Store/urls.py" />
         <option value="$PROJECT_DIR$/warehouse/views.py" />
+        <option value="$PROJECT_DIR$/warehouse/forms.py" />
+        <option value="$PROJECT_DIR$/templates/warehouse/writeoff.html" />
+        <option value="$PROJECT_DIR$/database/models.py" />
       </list>
     </option>
   </component>
@@ -227,80 +223,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="media" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="media" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="198" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="216" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="213" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="218" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="892" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="887" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="213" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="211" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
@@ -413,6 +361,11 @@
       <created>1363624126041</created>
       <updated>1363624126041</updated>
     </task>
+    <task id="LOCAL-00001" summary="xml">
+      <created>1365451646719</created>
+      <updated>1365451646719</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -423,7 +376,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15444015" sideWeight="0.4678771" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15444015" sideWeight="0.6703911" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -433,6 +386,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -475,7 +429,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="LAST_COMMIT_MESSAGE" value="xml" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -488,6 +442,7 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -500,93 +455,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/media/theme/js/daterangepicker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="30" selection-start="3161" selection-end="3161" vertical-scroll-proportion="-0.7134588">
-          <folding />
-        </state>
+        <state line="85" column="30" selection-start="3161" selection-end="3161" vertical-scroll-proportion="-0.7134588" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Store/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="48" selection-start="3972" selection-end="3972" vertical-scroll-proportion="2.6324167">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/warehouse/purchase.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="16" selection-start="6362" selection-end="6362" vertical-scroll-proportion="0.46875">
-          <folding />
-        </state>
+        <state line="107" column="48" selection-start="3972" selection-end="3972" vertical-scroll-proportion="2.6324167" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/media/store/js/acceptance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="17" selection-start="1821" selection-end="1893" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="50" column="17" selection-start="1821" selection-end="1893" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/media/store/js/return.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="32" selection-start="1626" selection-end="1626" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/warehouse/purchases.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="0" selection-start="6420" selection-end="6420" vertical-scroll-proportion="-8.730769">
-          <folding />
-        </state>
+        <state line="43" column="32" selection-start="1626" selection-end="1626" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/warehouse/return.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="79" selection-start="6549" selection-end="6567" vertical-scroll-proportion="-0.65384614">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Store/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="155" column="79" selection-start="6549" selection-end="6567" vertical-scroll-proportion="-0.65384614" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/warehouse/acceptance.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="11" selection-start="9876" selection-end="9876" vertical-scroll-proportion="-17.73077">
-          <folding />
-        </state>
+        <state line="218" column="11" selection-start="9876" selection-end="9876" vertical-scroll-proportion="-17.73077" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/warehouse/acceptances.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="26" selection-start="5108" selection-end="5814" vertical-scroll-proportion="-8.384615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="276" column="0" selection-start="11251" selection-end="11251" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="111" column="26" selection-start="5108" selection-end="5814" vertical-scroll-proportion="-8.384615" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/warehouse/returns.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="42" selection-start="4111" selection-end="4111" vertical-scroll-proportion="-16.346153">
-          <folding />
-        </state>
+        <state line="82" column="42" selection-start="4111" selection-end="4111" vertical-scroll-proportion="1.2526315" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/warehouse/purchases.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="163" column="42" selection-start="0" selection-end="7359" vertical-scroll-proportion="-7.769231" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/warehouse/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="299" column="28" selection-start="15201" selection-end="15201" vertical-scroll-proportion="0.097345136">
+        <state line="28" column="22" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/warehouse/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="19" selection-start="1512" selection-end="1512" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/warehouse/purchase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="207" column="16" selection-start="6362" selection-end="6362" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Store/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="44" selection-start="1446" selection-end="1446" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="25" selection-start="2937" selection-end="2938" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/warehouse/writeoff.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="68" selection-start="5034" selection-end="5034" vertical-scroll-proportion="0.38345864">
           <folding />
         </state>
       </provider>
