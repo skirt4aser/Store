@@ -7,19 +7,48 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 from database.models import Purchase, ProductOfPurchase, Acceptance, ProductAtWarehouse, ReturnModel
-from warehouse.forms import PurchaseForm, ProductOfPurchaseForm, AcceptanceForm, ReturnForm, WriteOffForm, ProductAtWarehouseForm, DishOfWarehouseForm
+from warehouse.forms import PurchaseForm, ProductOfPurchaseForm, AcceptanceForm, ReturnForm, WriteOffForm, ProductAtWarehouseForm, DishOfWarehouseForm, SupplierForm
 
 __author__ = 'Ars'
+
+
+@login_required()
+def supplier(request):
+    # if in a postback
+    if request.method == 'POST':
+        # getting form
+        form = SupplierForm(request.POST)
+        # validating form elements
+        if form.is_valid():
+            # creating and instance of a binded model object
+            supplier = form.save(commit=False)
+            # populating with form data
+            supplier.name = form.cleaned_data['name']
+            supplier.address = form.cleaned_data['address']
+            supplier.phone = form.cleaned_data['phone']
+            supplier.contact = form.cleaned_data['contact']
+            supplier.contact_phone = form.cleaned_data['contact_phone']
+            supplier.comment = form.cleaned_data['comment']
+            supplier.contact_comment = form.cleaned_data['contact_comment']
+            # saving to db
+            supplier = form.save()
+            # redirecting...
+            return HttpResponseRedirect('/supplier/')
+    else:
+        form = SupplierForm()
+
+    return render_to_response('dictionary/supplier.html', {'form': form}, RequestContext(request))
+
 
 @login_required()
 def purchases(request, page_pk):
     page_pk = int(page_pk)
     per_page = 10
-    purchases = Purchase.objects.all().order_by('date_purchase','pk')
+    purchases = Purchase.objects.all().order_by('date_purchase', 'pk')
     all = purchases.count()
     pages = int(ceil(all/float(per_page)))
-    if page_pk>pages and page_pk!=1:
-        raise  Http404()
+    if page_pk > pages and page_pk != 1:
+        raise Http404()
     page_list = []
     for i in range(pages):
         page_list.append(i+1)

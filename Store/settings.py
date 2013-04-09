@@ -11,12 +11,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'store',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'store',                        # Or path to database file if using sqlite3.
+        'USER': 'root',                         # Not used with sqlite3.
+        'PASSWORD': '',                         # Not used with sqlite3.
+        'HOST': '127.0.0.1',                    # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -105,7 +105,11 @@ ROOT_URLCONF = 'Store.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'Store.wsgi.application'
 
-TEMPLATE_DIRS = ('C:/DreamPRO/Store/templates',)
+import os.path
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), '../templates').replace('\\', '/'),
+    #'C:/DreamPRO/Store/templates',
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -113,6 +117,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.admin',
     'database',
+    #'bootstrap_toolkit',
 )
 
 # A sample logging configuration. The only tangible logging

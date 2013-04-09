@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from warehouse.ajax import purchase_save, get_product_price
-from warehouse.views import purchases, purchase, purchase_product_delete, purchase_product, purchase_delete, acceptance, acceptances, return_view, returns, writeoff
+from warehouse.views import purchases, purchase, purchase_product_delete, purchase_product, purchase_delete, acceptance, acceptances, return_view, returns, writeoff, supplier
 
 admin.autodiscover()
 
@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
     (r'^purchases/page/(?P<page_pk>\d+)/$', purchases),
-    (r'^purchase/$', purchase, {'id_purchase':0}),
+    (r'^purchase/$', purchase, {'id_purchase': 0}),
     (r'^purchase/(?P<id_purchase>\d+)/$', purchase),
     (r'^purchase/(?P<id_purchase>\d+)/product/(?P<id_product>\d+)/$', purchase_product),
     (r'^purchase/product/(?P<id_product>\d+)/delete/$', purchase_product_delete),
@@ -28,5 +28,7 @@ urlpatterns = patterns('',
     (r'^acceptance/(?P<id_acceptance>\d+)/return/$', return_view),
     (r'^returns/page/(?P<page_pk>\d+)/$', returns),
 
-    (r'^writeoff/$', writeoff, {'id_writeoff':0}),
+    (r'^writeoff/$', writeoff, {'id_writeoff': 0}),
+
+    (r'^supplier/$', supplier),
 )

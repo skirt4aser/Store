@@ -12,6 +12,8 @@ class Supplier(models.Model):
     phone = models.CharField(max_length=255, verbose_name='Телефон', blank=True)
     contact = models.CharField(max_length=255, verbose_name='Контактное лицо, ФИО', blank=True)
     contact_phone = models.CharField(max_length=255, verbose_name='Контактное лицо, телефон', blank=True)
+    comment = models.TextField(verbose_name='Комментарий', blank=True)
+    contact_comment = models.TextField(verbose_name='Контактное лицо, комментарий', blank=True)
 
     def __unicode__(self):
         return self.name
@@ -21,6 +23,7 @@ class Supplier(models.Model):
         ordering = ['name']
         verbose_name_plural = u'Поставщики'
         verbose_name = u'Поставщик'
+
 
 class CategoryOfProduct(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
@@ -34,6 +37,7 @@ class CategoryOfProduct(models.Model):
         ordering = ['name']
         verbose_name_plural = u'Категории товара'
         verbose_name = u'Категория товара'
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
@@ -52,6 +56,7 @@ class Product(models.Model):
         verbose_name_plural = u'Товары'
         verbose_name = u'Товар'
 
+
 class Warehouse(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     address = models.CharField(max_length=255, verbose_name='Адрес', blank=True)
@@ -66,6 +71,7 @@ class Warehouse(models.Model):
         verbose_name_plural = u'Склады'
         verbose_name = u'Склад'
 
+
 class CategoryOfDish(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     parent = models.ForeignKey('self', verbose_name='Категория')
@@ -78,6 +84,7 @@ class CategoryOfDish(models.Model):
         ordering = ['name']
         verbose_name_plural = u'Категории калькуляционных карт'
         verbose_name = u'Категория калькуляционных карт'
+
 
 class Dish(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
@@ -100,6 +107,7 @@ class Dish(models.Model):
         ordering = ['name']
         verbose_name_plural = u'Калькуляционные карты'
         verbose_name = u'Калькуляционная карта'
+
 
 class ProductOfDish(models.Model):
     dish = models.ForeignKey(Dish, verbose_name='КК')
@@ -135,6 +143,7 @@ class SalePoint(models.Model):
         verbose_name_plural = u'Точки продаж'
         verbose_name = u'Точка продаж'
 
+
 class Change(models.Model):
     point = models.ForeignKey(SalePoint, verbose_name='Точка продаж')
     cashier = models.ForeignKey(User, verbose_name='Кассир')
@@ -149,6 +158,7 @@ class Change(models.Model):
         ordering = ['point']
         verbose_name_plural = u'Смены'
         verbose_name = u'Смена'
+
 
 class Sale(models.Model):
     point = models.ForeignKey(SalePoint, verbose_name='Точка продаж')
@@ -165,6 +175,7 @@ class Sale(models.Model):
         verbose_name_plural = u'Смены'
         verbose_name = u'Смена'
 
+
 class DishOfSale(models.Model):
     sale = models.ForeignKey(Sale, verbose_name='Продажи')
     dish = models.ForeignKey(Dish, verbose_name='Блюда')
@@ -179,6 +190,7 @@ class DishOfSale(models.Model):
         ordering = ['dish']
         verbose_name_plural = u'Блюда для продажи'
         verbose_name = u'Блюдо для продажи'
+
 
 class Purchase(models.Model):
     purchaser = models.ForeignKey(User, verbose_name='Закупщик', related_name='purchaser')
@@ -201,12 +213,13 @@ class Purchase(models.Model):
         verbose_name_plural = u'Закупы'
         verbose_name = u'Закуп'
 
+
 class ProductOfPurchase(models.Model):
     purchase = models.ForeignKey(Purchase, verbose_name='Закуп')
     product = models.ForeignKey(Product, verbose_name='Товары')
     purchase_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Количество, закуп')
-    acceptance_amount = models.DecimalField(max_digits=10, decimal_places=2,verbose_name='Количество, приемка', blank=True, null=True)
-    return_amount = models.DecimalField(max_digits=10, decimal_places=2,verbose_name='Количество, возврат', blank=True, null=True)
+    acceptance_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Количество, приемка', blank=True, null=True)
+    return_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Количество, возврат', blank=True, null=True)
     purchase_price = models.PositiveIntegerField(verbose_name='Цена закупа')
     acceptance_price = models.PositiveIntegerField(verbose_name='Цена закупа', blank=True, null=True)
     return_price = models.PositiveIntegerField(verbose_name='Цена закупа', blank=True, null=True)
@@ -219,6 +232,7 @@ class ProductOfPurchase(models.Model):
         ordering = ['product']
         verbose_name_plural = u'Товары закупа'
         verbose_name = u'Товар закупа'
+
 
 class Acceptance(models.Model):
     purchase = models.OneToOneField(Purchase, verbose_name='Закуп')
@@ -239,7 +253,7 @@ class Acceptance(models.Model):
         return sum
 
     def debt(self):
-        debt = self.cash -(self.purchase.issued-self.sum()-self.costs)
+        debt = self.cash - (self.purchase.issued - self.sum() - self.costs)
         return debt
 
     def __unicode__(self):
@@ -250,6 +264,7 @@ class Acceptance(models.Model):
         ordering = ['pk']
         verbose_name_plural = u'Приемки'
         verbose_name = u'Приемка'
+
 
 class ReturnModel(models.Model):
     acceptance = models.OneToOneField(Acceptance, verbose_name='Приемка')
@@ -276,6 +291,7 @@ class ReturnModel(models.Model):
         verbose_name_plural = u'Возвраты'
         verbose_name = u'Возврат'
 
+
 class WriteOff(models.Model):
     warehouse = models.ForeignKey(Warehouse, verbose_name='Склад')
     date = models.DateField(verbose_name='Дата')
@@ -295,6 +311,7 @@ class WriteOff(models.Model):
         verbose_name_plural = u'Списания'
         verbose_name = u'Списание'
 
+
 class ProductOfWriteOff(models.Model):
     writeoff = models.ForeignKey(WriteOff, verbose_name='Списание')
     product = models.ForeignKey(Product, verbose_name='Товары', blank=True, null=True)
@@ -310,6 +327,7 @@ class ProductOfWriteOff(models.Model):
         ordering = ['product']
         verbose_name_plural = u'Товары списания'
         verbose_name = u'Товар списанияы'
+
 
 class Inventory(models.Model):
     warehouse = models.ForeignKey(Warehouse, verbose_name='Склад')
@@ -329,6 +347,7 @@ class Inventory(models.Model):
         verbose_name_plural = u'Инвентаризация'
         verbose_name = u'Инвентаризация'
 
+
 class ProductOfInventory(models.Model):
     inventory = models.ForeignKey(Inventory, verbose_name='Инвентаризация')
     product = models.ForeignKey(Product, verbose_name='Товары')
@@ -344,6 +363,7 @@ class ProductOfInventory(models.Model):
         ordering = ['product']
         verbose_name_plural = u'Товары инвентаризации'
         verbose_name = u'Товар инвентаризации'
+
 
 class Movement(models.Model):
     warehouse_from = models.ForeignKey(Warehouse, verbose_name='Склад откуда', related_name='warehouse_from')
@@ -364,6 +384,7 @@ class Movement(models.Model):
         verbose_name_plural = u'Перемещения'
         verbose_name = u'Перемещение'
 
+
 class ProductOfMovement(models.Model):
     movement = models.ForeignKey(Movement, verbose_name='Перемещение')
     product = models.ForeignKey(Product, verbose_name='Товары', blank=True, null=True)
@@ -379,6 +400,7 @@ class ProductOfMovement(models.Model):
         ordering = ['product']
         verbose_name_plural = u'Товары перемещения'
         verbose_name = u'Товар перемещения'
+
 
 class Issuance(models.Model):
     warehouse = models.ForeignKey(Warehouse, verbose_name='Склад')
@@ -399,6 +421,7 @@ class Issuance(models.Model):
         verbose_name_plural = u'Выдачи'
         verbose_name = u'Выдача'
 
+
 class DishOfIssuance(models.Model):
     issuance = models.ForeignKey(Issuance, verbose_name='Выдача')
     dish = models.ForeignKey(Dish, verbose_name='Блюдо')
@@ -413,6 +436,7 @@ class DishOfIssuance(models.Model):
         ordering = ['dish']
         verbose_name_plural = u'Блюда выдачи'
         verbose_name = u'Блюдо выдачи'
+
 
 class DishOfWarehouse(models.Model):
     warehouse = models.ForeignKey(Warehouse, verbose_name='Склад')
@@ -429,6 +453,7 @@ class DishOfWarehouse(models.Model):
         ordering = ['dish']
         verbose_name_plural = u'Блюда на складе'
         verbose_name = u'Блюдо на складе'
+
 
 class Costs(models.Model):
     date = models.DateField(verbose_name='Дата')
@@ -481,6 +506,7 @@ class UserProfile(models.Model):
         ordering = ['pk']
         verbose_name_plural = u'Профили'
         verbose_name = u'Профиль'
+
 
 @receiver(post_save, sender=User, dispatch_uid="gV3AQD1y3H6laRX5mx94KDWeqYrL9c0V")
 def create_profile(sender, instance, created, **kwargs):

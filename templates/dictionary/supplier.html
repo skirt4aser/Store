@@ -1,0 +1,112 @@
+{% extends 'dictionary/main.html' %}
+
+{#{% load bootstrap_toolkit %}#}
+
+{% block content %}
+    <div class="row-fluid">
+        <form class="form-horizontal no-margin" method="POST">
+            <div class="span6">
+                <div class="widget">
+                    <div class="widget-header">
+                        <div class="title">
+                            Контрагент
+                            <span class="mini-title">
+                                Supplier CRUD form
+                            </span>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="control-group">
+                            <label class="control-label">
+                                Наименование
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form.name }}
+                                <span class="help-inline ">
+                                    {{form.name.errors}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                Адрес
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form.address }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                Телефон
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form.phone }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                Контактное лицо, ФИО
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form.contact }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                Контактное лицо, телефон
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form.contact_phone }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                Комментарий
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form.comment }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                Контактное лицо, комментарий
+                            </label>
+                            <div class="controls controls-row">
+                                {{ form.contact_comment }}
+                            </div>
+                        </div>                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-info pull-right" id="add_product">
+                                Добавить товар
+                            </button>
+                            <div class="clearfix">
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="/media/theme/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/media/store/js/purchase.js"></script>
+    <script type="text/javascript" src="/media/theme/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#id_date').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+            $('#id_product').select2();
+            $.fn.purchase();
+            $('a').tooltip('hide');
+            $('i').tooltip('hide');
+        });
+    </script>
+{% endblock %}
+{% block css %}
+    <link href="/media/theme/css/datepicker.css" rel="stylesheet">
+    <link href="/media/theme/css/select2.css" rel="stylesheet">
+{% endblock %}
