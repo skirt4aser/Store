@@ -1,9 +1,7 @@
 from django.forms import ModelForm
 from django.forms.widgets import Textarea, Select
-from database.models import Purchase, ProductOfPurchase, Acceptance, ReturnModel, WriteOff, ProductAtWarehouse, DishOfWarehouse, Supplier
+from database.models import Purchase, ProductOfPurchase, Acceptance, ReturnModel, WriteOff, ProductAtWarehouse, DishOfWarehouse
 from django import forms
-
-#from bootstrap_toolkit.widgets import BootstrapTextInput, BootstrapUneditableInput, BootstrapDateInput
 
 __author__ = 'Ars'
 
@@ -69,8 +67,3 @@ class DishOfWarehouseForm(ModelForm):
         widgets = {
             'dish': Select(attrs={'style': 'width:220px;'}),
         }
-
-
-class SupplierForm(forms.ModelForm):
-    class Meta:
-        model = Supplier
