@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 
 from warehouse.views import purchases, purchase, purchase_product_delete, purchase_product, purchase_delete, acceptance, acceptances, return_view, returns, writeoff
-from catalog.views import supplier
+from catalog.views import suppliers
+from catalog.ajax import supplier, supplier_save, supplier_delete
 
 from warehouse.ajax import purchase_save, get_product_price
 
@@ -33,5 +34,8 @@ urlpatterns = patterns('',
 
     (r'^writeoff/$', writeoff, {'id_writeoff': 0}),
 
-    (r'^supplier/$', supplier),
+    (r'^suppliers/$', suppliers),
+    (r'^ajax/supplier/$', supplier),
+    (r'^ajax/supplier/save$', supplier_save),
+    (r'^ajax/supplier/delete$', supplier_delete),
 )

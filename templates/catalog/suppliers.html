@@ -1,0 +1,136 @@
+{% extends 'catalog/main.html' %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="title">
+                        Таблица
+                        <span class="mini-title">
+                            Справочник контрагентов
+                        </span>
+                    </div>
+                    <span class="tools" id="btnToggleWidget">
+                        <a class="fs1"  aria-hidden="true" data-icon="&#xe090;"></a>
+                    </span>
+                </div>
+                <div class="widget-body">
+                    <form class="form-horizontal no-margin" method="POST">
+                        {% csrf_token %}
+                    <table class="table table-hover table-bordered table-striped table-condensed data-table">
+                        <thead>
+                            <tr>                                
+                                <th>№</th>
+                                <th>Наименование</th>
+                                <th>Телефон</th>
+                                <th>Адрес</th>
+                                <th>Комментарий</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            {% for item in suppliers %}
+                                <tr class="tr-row" data-id="{{ item.id }}">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.phone }}</td>
+                                    <td>{{ item.address }}</td>
+                                    <td>{{ item.comments }}</td>
+                                </tr>
+                            {% endfor %}
+                            <!--
+                                $('#myTable > tbody:last').append('<tr>...</tr><tr>...</tr>');
+                            -->
+                        </tbody>
+                    </table>
+                    </form>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form id="modalform">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Modal header</h3>
+        </div>
+        <div class="modal-body" id="myform">
+            <h1>emoewka</h1>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <input id="formSubmitBtn" type="button" class="btn btn-primary" value="Save changes"/>
+        </div>
+    </form>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/media/theme/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/media/store/js/purchase.js"></script>
+    <script type="text/javascript" src="/media/theme/js/select2.min.js"></script>
+    <script src="/media/catalog/settings.js"></script>
+    <script type="text/javascript">
+
+        // selecting a row
+        $('.tr-row').click(function(){
+            // remove previous highlighted row
+            $('.data-table tr').each(function() {
+                if($(this).hasClass('info')) $(this).removeClass('info');
+            });
+            $(this).addClass('info');
+            // highlight selected row
+            console.log($(this).attr('data-id'));
+        });
+
+        // editing a row
+        $('.tr-row').dblclick(function(){
+            var me = $(this);
+            // toggling modal window state
+            $('#myModal').modal('toggle');
+            // loading dynamic form
+            $('#myModal').on('shown', function () {
+                $.ajax({
+                    url: '/ajax/supplier/',
+                    type: 'POST',
+                    data: {'id': me.attr('data-id')},
+                    success: function(data) {
+                        var returned_html = $(data);
+                        $('#myModal #myform').empty();
+                        $('#myModal #myform').html(returned_html)
+                    },
+                    failure: function(e){
+                        console.log(e);
+                    }
+                });
+            });
+            // $(location).attr('href',"/supplier/");
+            // window.location.href("/supplier/");
+        });
+
+        $('#formSubmitBtn').click(function() {
+            var form = $("#modalform");
+            console.log('AJAX FORM SUBMIT INIT...');
+            $.ajax({
+                url: '/ajax/supplier/save',
+                type: 'POST',
+                data: {'form': form.serialize(true)},
+                success: function(data) {
+                    console.log('AJAX CALLBACK SUCCESS: ', data);
+                },
+                failure: function(e){
+                    console.log('AJAX CALLBACK FAILURE: ', e);
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block css %}
+    <link href="/media/theme/css/datepicker.css" rel="stylesheet">
+    <link href="/media/theme/css/select2.css" rel="stylesheet">
+{% endblock %}

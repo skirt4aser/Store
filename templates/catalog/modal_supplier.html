@@ -1,0 +1,72 @@
+<div class="row-fluid">
+    <div class="span6">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="control-group">
+            <label class="control-label">
+                Наименование
+            </label>
+            <div class="controls controls-row">
+                {{ form.name }}
+                <span class="help-inline ">
+                    {{form.name.errors}}
+                </span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Адрес
+            </label>
+            <div class="controls controls-row">
+                {{ form.address }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Телефон
+            </label>
+            <div class="controls controls-row">
+                {{ form.phone }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Комментарий
+            </label>
+            <div class="controls controls-row">
+                {{ form.comment }}
+            </div>
+        </div>
+    </div>    
+    <div class="span6">
+        <div class="control-group">
+            <label class="control-label">
+                Контактное лицо, ФИО
+            </label>
+            <div class="controls controls-row">
+                {{ form.contact }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Контактное лицо, телефон
+            </label>
+            <div class="controls controls-row">
+                {{ form.contact_phone }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Контактное лицо, комментарий
+            </label>
+            <div class="controls controls-row">
+                {{ form.contact_comment }}
+            </div>
+        </div>                        
+    </div>            
+</div>
+<script type="text/javascript" src="/media/theme/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/media/store/js/purchase.js"></script>
+<script type="text/javascript" src="/media/theme/js/select2.min.js"></script>
+<script type="text/javascript">
+</script>
